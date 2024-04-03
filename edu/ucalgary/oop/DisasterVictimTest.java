@@ -175,7 +175,7 @@ public class DisasterVictimTest {
     @Test
     public void testAlteringFamilyRelationship() {
         DisasterVictim sibling = new DisasterVictim("Sam", validDate);
-        familyRelation = new FamilyRelation(victim, "sibling", sibling);
+        FamilyRelation familyRelation = new FamilyRelation(victim, "sibling", sibling);
         
         victim.addFamilyConnection(familyRelation);
         sibling.addFamilyConnection(familyRelation);
