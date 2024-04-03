@@ -189,7 +189,7 @@ public class DisasterVictimTest {
     // Test that genderoptions are read from the txt file and verify if the gender option is valid
     @Test
     public void testGenderOptionsFromFile() throws IOException {
-        String genderFileName = "genderoptions.txt"; 
+        String genderFileName = "GenderOptions.txt"; 
         List<String> genderOptions = Files.readAllLines(Paths.get(genderFileName));
 
         String validGenderOption = genderOptions.get(0); 
