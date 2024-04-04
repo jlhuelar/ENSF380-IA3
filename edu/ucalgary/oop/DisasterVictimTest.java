@@ -162,13 +162,16 @@ public class DisasterVictimTest {
     @Test
     public void testConsistentFamilyRelationship() {
         DisasterVictim sibling = new DisasterVictim("Sam", validDate);
-        familyRelation = new FamilyRelation(victim, "sibling", sibling);
+        FamilyRelation familyRelation = new FamilyRelation(victim, "sibling", sibling);
         
         victim.addFamilyConnection(familyRelation);
         sibling.addFamilyConnection(familyRelation); 
         
-        assertTrue(victim.getFamilyConnections().contains(familyRelation));
-        assertTrue(sibling.getFamilyConnections().contains(familyRelation));
+        List<FamilyRelation> victimConnections = Arrays.asList(victim.getFamilyConnections());
+        List<FamilyRelation> siblingConnections = Arrays.asList(sibling.getFamilyConnections());
+
+        assertTrue(victimConnections.contains(familyRelation));
+        assertTrue(siblingConnections.contains(familyRelation));
     }
 
     // Test that altering a family relationship affects both DisasterVictims
@@ -181,9 +184,13 @@ public class DisasterVictimTest {
         sibling.addFamilyConnection(familyRelation);
 
         victim.removeFamilyConnection(familyRelation);
+        sibling.removeFamilyConnection(familyRelation);
         
-        assertFalse(victim.getFamilyConnections().contains(familyRelation));
-        assertFalse(sibling.getFamilyConnections().contains(familyRelation)); 
+        List<FamilyRelation> victimConnections = Arrays.asList(victim.getFamilyConnections());
+        List<FamilyRelation> siblingConnections = Arrays.asList(sibling.getFamilyConnections());
+
+        assertFalse(victimConnections.contains(familyRelation));
+        assertFalse(siblingConnections.contains(familyRelation));
     }
 
     // Test that genderoptions are read from the txt file and verify if the gender option is valid
