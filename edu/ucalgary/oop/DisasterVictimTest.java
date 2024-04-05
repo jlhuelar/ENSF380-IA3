@@ -13,7 +13,7 @@ import java.util.List;
 public class DisasterVictimTest {
 
     private DisasterVictim victim;
-    private final String validDate = "2024-03-14";
+    private final String validDate = "2024-04-09";
 
     @Before
     public void setUp() {
