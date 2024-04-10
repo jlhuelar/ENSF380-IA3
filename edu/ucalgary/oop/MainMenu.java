@@ -1,10 +1,6 @@
 package edu.ucalgary.oop;
 
 import java.util.Scanner;
-import edu.ucalgary.oop.DatabaseManager;
-import edu.ucalgary.oop.DisasterVictimInterface;
-import edu.ucalgary.oop.InquirerInterface;
-import edu.ucalgary.oop.InquirerLogInterface;
 
 /**
 * @author Jericho Huelar

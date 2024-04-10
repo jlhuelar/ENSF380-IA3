@@ -2,7 +2,7 @@ package edu.ucalgary.oop;
 
 import java.util.Scanner;
 import java.sql.SQLException;
-import edu.ucalgary.oop.DisasterVictim;
+
 
 public class DisasterVictimInterface {
 
@@ -97,6 +97,16 @@ public class DisasterVictimInterface {
             DisasterVictim person1 = databaseManager.getDisasterVictimByName(firstName1, lastName1);
             DisasterVictim person2 = databaseManager.getDisasterVictimByName(firstName2, lastName2);
             
+            if (person1 == null) {
+                System.out.println("First person not found in the database.");
+                return;
+            }
+    
+            if (person2 == null) {
+                System.out.println("Second person not found in the database.");
+                return;
+            }
+
             FamilyRelation familyRelation = new FamilyRelation(person1, relationship, person2); // This line is causing the NullPointerException
     
             // Add the family relation to the respective persons
@@ -108,14 +118,47 @@ public class DisasterVictimInterface {
             System.out.println("Error adding family relationship: " + e.getMessage());
         }
     }
-    
-        
-        
-    
 
     private static void addMedicalRecord() {
         System.out.println("Adding a medical record:");
-
-        // Implement this method to add a medical record for a victim
+    
+        try {
+            // Prompt for victim's details to select the victim
+            System.out.print("Enter victim's first name: ");
+            String firstName = scanner.nextLine();
+            System.out.print("Enter victim's last name: ");
+            String lastName = scanner.nextLine();
+    
+            // Retrieve the victim from the database
+            DisasterVictim victim = databaseManager.getDisasterVictimByName(firstName, lastName);
+    
+            if (victim == null) {
+                System.out.println("Victim not found in the database.");
+                return;
+            }
+    
+            // Prompt for details of the medical record
+            System.out.print("Enter location name: ");
+            String locationName = scanner.nextLine();
+            System.out.print("Enter location address: ");
+            String locationAddress = scanner.nextLine();
+            System.out.print("Enter treatment details: ");
+            String treatmentDetails = scanner.nextLine();
+            System.out.print("Enter date of treatment (YYYY-MM-DD): ");
+            String dateOfTreatment = scanner.nextLine();
+    
+            // Create a Location object with the provided location details
+            Location medicalLocation = new Location(locationName, locationAddress);
+    
+            // Create a MedicalRecord object with the provided details
+            MedicalRecord medicalRecord = new MedicalRecord(medicalLocation, treatmentDetails, dateOfTreatment);
+    
+            // Add the medical record to the victim's list of medical records
+            victim.addMedicalRecord(medicalRecord);
+    
+            System.out.println("Medical record added successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error adding medical record: " + e.getMessage());
+        }
     }
 }

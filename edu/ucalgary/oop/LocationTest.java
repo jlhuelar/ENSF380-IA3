@@ -15,7 +15,7 @@ public class LocationTest {
     @Before
     public void setUp() {
         location = new Location("Central Shelter", "123 Main St");
-        occupant = new DisasterVictim("Andrei","2024-03-10"); // replace with appropriate constructor
+        occupant = new DisasterVictim("Andrei","2024-03-10","322-775-242"); 
         supply = new Supply("Water", 100);
     }
 

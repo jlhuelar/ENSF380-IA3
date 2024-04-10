@@ -17,7 +17,7 @@ public class ReliefServiceTest {
     @Before
     public void setUp() {
         inquirer = new Inquirer("Alex", "Brown", "555-0101");
-        missingPerson = new DisasterVictim("John", "2024-03-12"); 
+        missingPerson = new DisasterVictim("John", "2024-03-12","322-777-222"); 
         lastKnownLocation = new Location("Saddledome","555 Saddledome Rise Se"); 
         reliefService = new ReliefService(inquirer, missingPerson, dateOfInquiry, infoProvided, lastKnownLocation);
     }
@@ -63,7 +63,7 @@ public class ReliefServiceTest {
     // Test to set missing person
     @Test
     public void testSetMissingPerson() {
-        DisasterVictim newMissingPerson = new DisasterVictim("Alejandro", "2024-03-10"); 
+        DisasterVictim newMissingPerson = new DisasterVictim("Alejandro", "2024-03-10","321-321-312"); 
         reliefService.setMissingPerson(newMissingPerson);
         assertEquals("Setter should update the missing person.", newMissingPerson, reliefService.getMissingPerson());
     }

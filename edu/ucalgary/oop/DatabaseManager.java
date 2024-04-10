@@ -42,11 +42,20 @@ public class DatabaseManager {
                 "phoneNumber VARCHAR(20) NOT NULL" +
                 ");";
 
+        String createMedicalRecordTableSQL = "CREATE TABLE IF NOT EXISTS MEDICAL_RECORD (" +
+                "id SERIAL PRIMARY KEY," +
+                "location_name VARCHAR(100) NOT NULL," +
+                "location_address VARCHAR(100) NOT NULL," +
+                "treatment_details VARCHAR(500) NOT NULL," +
+                "date_of_treatment DATE NOT NULL" +
+                ");";
+
         try (Connection conn = connect();
              Statement stmt = conn.createStatement()) {
             stmt.execute(createInquirerTableSQL);
             stmt.execute(createInquiryLogTableSQL);
             stmt.execute(createDisasterVictimTableSQL);
+            stmt.execute(createMedicalRecordTableSQL);
         }
     }
 
@@ -135,24 +144,38 @@ public class DatabaseManager {
     }
 
     public DisasterVictim getDisasterVictimByName(String firstName, String lastName) throws SQLException {
-    String querySQL = "SELECT * FROM DISASTER_VICTIM WHERE firstName = ? AND lastName = ?";
-    DisasterVictim victim = null;
-
-    try (Connection conn = connect();
-         PreparedStatement pstmt = conn.prepareStatement(querySQL)) {
-        pstmt.setString(1, firstName);
-        pstmt.setString(2, lastName);
-
-        try (ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                // Extract victim details from the result set
-                String phoneNumber = rs.getString("phoneNumber");
-
-                // Create a new DisasterVictim object
-                victim = new DisasterVictim(firstName, lastName, phoneNumber);
+        String querySQL = "SELECT * FROM DISASTER_VICTIM WHERE firstName = ? AND lastName = ?";
+        DisasterVictim victim = null;
+    
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(querySQL)) {
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+    
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    // Extract victim details from the result set
+                    String phoneNumber = rs.getString("phoneNumber");
+    
+                    // Create a new DisasterVictim object
+                    victim = new DisasterVictim(firstName, lastName, phoneNumber);
+                }
             }
         }
+        return victim;
     }
-    return victim;
-}
+
+    public void addMedicalRecord(MedicalRecord medicalRecord) throws SQLException {
+        String insertSQL = "INSERT INTO MEDICAL_RECORD (location_name, location_address, treatment_details, date_of_treatment) VALUES (?, ?, ?, ?);";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+            pstmt.setString(1, medicalRecord.getLocation().getName());
+            pstmt.setString(2, medicalRecord.getLocation().getAddress());
+            pstmt.setString(3, medicalRecord.getTreatmentDetails());
+            pstmt.setDate(4, Date.valueOf(medicalRecord.getDateOfTreatment()));
+
+            pstmt.executeUpdate();
+        }
+    }
 }
