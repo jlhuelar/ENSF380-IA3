@@ -34,11 +34,19 @@ public class DatabaseManager {
                 "details VARCHAR(500) NOT NULL," +
                 "FOREIGN KEY (inquirer) REFERENCES INQUIRER(id) ON UPDATE CASCADE" +
                 ");";
+        
+        String createDisasterVictimTableSQL = "CREATE TABLE IF NOT EXISTS DISASTER_VICTIM (" +
+                "id SERIAL PRIMARY KEY," +
+                "firstName VARCHAR(50) NOT NULL," +
+                "lastName VARCHAR(50)," +
+                "phoneNumber VARCHAR(20) NOT NULL" +
+                ");";
 
         try (Connection conn = connect();
              Statement stmt = conn.createStatement()) {
             stmt.execute(createInquirerTableSQL);
             stmt.execute(createInquiryLogTableSQL);
+            stmt.execute(createDisasterVictimTableSQL);
         }
     }
 
@@ -63,6 +71,11 @@ public class DatabaseManager {
                 }
             }
         }
+    }
+
+    public void addInquirer(DisasterVictim victim) throws SQLException {
+        Inquirer inquirer = new Inquirer(victim.getFirstName(), victim.getLastName(), victim.getPhoneNumber());
+        addInquirer(inquirer);
     }
 
     public void logInteraction(int inquirerId, String callDate, String details) throws SQLException {

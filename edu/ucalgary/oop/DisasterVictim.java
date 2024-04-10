@@ -11,6 +11,7 @@ public class DisasterVictim {
     private int approximateAge;
     private String gender;
     private String comments;
+    private String phoneNumber;
     protected int Assigned_Social_ID;
     private ArrayList<MedicalRecord> medicalRecords;
     private ArrayList<FamilyRelation> familyRelations;
@@ -19,12 +20,13 @@ public class DisasterVictim {
     private static int counter = 0;
     private ArrayList<DietaryRestrictions> dietaryRestrictions;
 
-    public DisasterVictim(String firstName, String ENTRY_DATE) {
+    public DisasterVictim(String firstName, String ENTRY_DATE, String phoneNumber) {
         this.firstName = firstName;
         if (!ENTRY_DATE.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw new IllegalArgumentException("Invalid date format. Please use xxxx-xx-xx format.");
         }
             else this.ENTRY_DATE = ENTRY_DATE;
+        this.phoneNumber = phoneNumber;    
         this.Assigned_Social_ID = 1 + counter;
         counter++;
         this.personalBelongings = new ArrayList<>();
@@ -75,6 +77,10 @@ public class DisasterVictim {
 
     public int getApproximateAge() {
         return approximateAge;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void setFirstName(String firstName) {
@@ -191,5 +197,9 @@ public class DisasterVictim {
     // Getter for dietary restrictions
     public DietaryRestrictions[] getDietaryRestrictions() {
         return this.dietaryRestrictions.toArray(new DietaryRestrictions[0]);
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

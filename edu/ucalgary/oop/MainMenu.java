@@ -1,6 +1,10 @@
 package edu.ucalgary.oop;
 
 import java.util.Scanner;
+import edu.ucalgary.oop.DatabaseManager;
+import edu.ucalgary.oop.DisasterVictimInterface;
+import edu.ucalgary.oop.InquirerInterface;
+import edu.ucalgary.oop.InquirerLogInterface;
 
 public class MainMenu {
     private static Scanner scanner = new Scanner(System.in);
@@ -18,17 +22,17 @@ public class MainMenu {
             System.out.println("4. Exit");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine(); // Consume newline
 
             switch (choice) {
                 case 1:
                     DisasterVictimInterface.main(new String[0]);
                     break;
                 case 2:
-                    InquirerInterface.main(new String[0]); // Assume similar structure as DisasterVictimInterface
+                    InquirerInterface.main(new String[0]);
                     break;
                 case 3:
-                    InquiryLogInterface.main(new String[0]); // Assume similar structure as DisasterVictimInterface
+                    InquirerLogInterface.main(new String[0]);
                     break;
                 case 4:
                     System.out.println("Exiting the system. Goodbye!");
@@ -36,10 +40,8 @@ public class MainMenu {
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
+                    continue;
             }
         }
     }
-
-    // You might need additional methods here for things like initializing the database.
 }
-

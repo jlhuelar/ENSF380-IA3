@@ -1,6 +1,8 @@
 package edu.ucalgary.oop;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class InquirerLogInterface {
@@ -22,7 +24,7 @@ public class InquirerLogInterface {
             System.out.println("3. Exit");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
 
             switch (choice) {
                 case 1:
@@ -56,7 +58,8 @@ public class InquirerLogInterface {
 
         try {
             databaseManager.addInquirer(inquirer);
-            databaseManager.logInteraction(inquirer.getId(), inquiryDetails);
+            String callDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); // Get current date
+            databaseManager.logInteraction(inquirer.getId(), callDate, inquiryDetails); // Pass callDate parameter
             System.out.println("Inquiry logged successfully!");
         } catch (SQLException e) {
             System.out.println("Error occurred while logging inquiry: " + e.getMessage());
@@ -66,7 +69,7 @@ public class InquirerLogInterface {
     private void viewInteractionLogs(Scanner scanner) {
         System.out.print("Enter inquirer ID: ");
         int inquirerId = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine(); 
 
         try {
             Inquirer inquirer = databaseManager.getInquirerById(inquirerId);
@@ -85,7 +88,7 @@ public class InquirerLogInterface {
 
     public static void main(String[] args) {
         // Initialize DatabaseManager with PostgreSQL database credentials
-        DatabaseManager databaseManager = new DatabaseManager("jdbc:postgresql://localhost:5432/database_name", "username", "password");
+        DatabaseManager databaseManager = new DatabaseManager("jdbc:postgresql://localhost/ensf380project", "oop", "ucalgary");
 
         // Create InquirerLogInterface instance and start the interface
         InquirerLogInterface inquirerLogInterface = new InquirerLogInterface(databaseManager);

@@ -10,7 +10,7 @@ public class InquirerInterface {
 
     public static void main(String[] args) {
         dbManager = new DatabaseManager(
-                "jdbc:postgresql://localhost/ensf380project", "oop", "password");
+                "jdbc:postgresql://localhost/ensf380project", "oop", "ucalgary");
 
         System.out.println("Welcome to the Inquirer Management System");
 
