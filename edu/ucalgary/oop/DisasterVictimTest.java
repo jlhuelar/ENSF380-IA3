@@ -206,5 +206,33 @@ public class DisasterVictimTest {
                 genderOptions.contains(victim.getGender()));
     }
 
+    // Test setting and getting birthdate
+    @Test
+    public void testSetAndGetBirthdate() {
+        victim.setDateOfBirth("1990-05-15");
+        assertEquals("1990-05-15", victim.getDateOfBirth());
+        assertEquals(0, victim.getApproximateAge()); // Ensure approximate age is not set
+    }
+
+    // Test setting and getting approximate age
+    @Test
+    public void testSetAndGetApproximateAge() {
+        victim.setApproximateAge(30);
+        assertEquals(30, victim.getApproximateAge());
+        assertNull(victim.getDateOfBirth()); // Ensure birthdate is not set
+    }
+
+    // Test setting birthdate with invalid format
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetBirthdateInvalidFormat() {
+        victim.setDateOfBirth("1990/05/15");
+    }
+
+    // Test setting approximate age with negative value
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetApproximateAgeNegative() {
+        victim.setApproximateAge(-5);
+    }
+
 }
 

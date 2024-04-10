@@ -71,9 +71,8 @@ public class DisasterVictimInterface {
     private static void addMedicalRecord() {
         System.out.println("Adding a medical record:");
     
-        DisasterVictim victim = findVictimById(getVictimIdInput("Enter the victim's ID: "));
+        DisasterVictim victim = findVictimById(getAssignedSocialID("Enter the victim's ID: "));
     
-        // Prompt for Location details
         Location location = getLocationFromUser();
     
         System.out.print("Enter treatment details: ");
@@ -103,9 +102,6 @@ public class DisasterVictimInterface {
     
         System.out.print("Enter location address: ");
         String address = scanner.nextLine();
-    
-        // Here you might want to check if a Location with the given name/address already exists
-        // to avoid duplicates, and if so, use the existing Location instead of creating a new one.
     
         return new Location(name, address);
     }

@@ -8,6 +8,7 @@ public class DisasterVictim {
     private String firstName;
     private String lastName;
     private String dateOfBirth;
+    private int approximateAge;
     private String gender;
     private String comments;
     protected int Assigned_Social_ID;
@@ -72,6 +73,10 @@ public class DisasterVictim {
         return personalBelongings.toArray(new Supply[personalBelongings.size()]);
     }
 
+    public int getApproximateAge() {
+        return approximateAge;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -85,6 +90,7 @@ public class DisasterVictim {
             throw new IllegalArgumentException("Invalid date format. Please use YYYY-MM-DD format.");
         }
         this.dateOfBirth = dateOfBirth;
+        this.approximateAge = 0; // Ensure only one field is set at a time
     }
 
     public void setComments(String comments) {
@@ -152,6 +158,14 @@ public class DisasterVictim {
 
     public int getAge() {
         return age;
+    }
+
+    public void setApproximateAge(int approximateAge) {
+        if (approximateAge < 0) {
+            throw new IllegalArgumentException("Approximate age cannot be negative.");
+        }
+        this.approximateAge = approximateAge;
+        this.dateOfBirth = null; // Ensure only one field is set at a time
     }
 
     // Method to set the age
