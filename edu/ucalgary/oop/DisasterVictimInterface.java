@@ -69,35 +69,45 @@ public class DisasterVictimInterface {
     }
 
     private static void addMedicalRecord() {
-    System.out.println("Adding a medical record:");
-
-    DisasterVictim victim = findVictimById(getVictimIdInput("Enter the victim's ID: "));
-
-    // Assuming Location is an enum or has a predefined set of values. 
-    // If it's more complex, you'll need a more sophisticated approach to capture this information.
-    System.out.print("Enter location (e.g., HospitalA, ClinicB): ");
-    String locationName = scanner.nextLine();
-    Location location = Location.valueOf(locationName.toUpperCase()); // Convert the input string to a Location enum value.
-
-    System.out.print("Enter treatment details: ");
-    String treatmentDetails = scanner.nextLine();
-
-    String dateOfTreatment;
-    while (true) {
-        System.out.print("Enter date of treatment (YYYY-MM-DD): ");
-        dateOfTreatment = scanner.nextLine();
-        if (dateOfTreatment.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            break;
-        } else {
-            System.out.println("Invalid date format. Please use YYYY-MM-DD format.");
+        System.out.println("Adding a medical record:");
+    
+        DisasterVictim victim = findVictimById(getVictimIdInput("Enter the victim's ID: "));
+    
+        // Prompt for Location details
+        Location location = getLocationFromUser();
+    
+        System.out.print("Enter treatment details: ");
+        String treatmentDetails = scanner.nextLine();
+    
+        String dateOfTreatment;
+        while (true) {
+            System.out.print("Enter date of treatment (YYYY-MM-DD): ");
+            dateOfTreatment = scanner.nextLine();
+            if (dateOfTreatment.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                break;
+            } else {
+                System.out.println("Invalid date format. Please use YYYY-MM-DD format.");
+            }
         }
+    
+        MedicalRecord medicalRecord = new MedicalRecord(location, treatmentDetails, dateOfTreatment);
+        victim.addMedicalRecord(medicalRecord);
+    
+        System.out.println("Medical record added successfully.");
     }
-
-    MedicalRecord medicalRecord = new MedicalRecord(location, treatmentDetails, dateOfTreatment);
-    victim.addMedicalRecord(medicalRecord);
-
-    System.out.println("Medical record added successfully.");
-}
-
+    
+    private static Location getLocationFromUser() {
+        
+        System.out.print("Enter location name: ");
+        String name = scanner.nextLine();
+    
+        System.out.print("Enter location address: ");
+        String address = scanner.nextLine();
+    
+        // Here you might want to check if a Location with the given name/address already exists
+        // to avoid duplicates, and if so, use the existing Location instead of creating a new one.
+    
+        return new Location(name, address);
+    }
 }
 
