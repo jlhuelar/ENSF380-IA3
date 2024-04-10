@@ -1,0 +1,12 @@
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\DatabaseManager.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\DisasterVictim.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\DisasterVictimInterface.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\FamilyRelation.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\Inquirer.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\InquirerInterface.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\InquirerLogInterface.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\Location.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\MainMenu.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\MedicalRecord.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\ReliefService.java
+C:\Users\huela\ENSF380\ENSF380-IA3\edu\ucalgary\oop\Supply.java
