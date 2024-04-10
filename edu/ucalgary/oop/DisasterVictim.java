@@ -202,4 +202,8 @@ public class DisasterVictim {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public FamilyRelation[] getFamilyConnections() {
+        return this.familyRelations.toArray(new FamilyRelation[0]);
+    }
 }

@@ -133,4 +133,26 @@ public class DatabaseManager {
         }
         return inquirer;
     }
+
+    public DisasterVictim getDisasterVictimByName(String firstName, String lastName) throws SQLException {
+    String querySQL = "SELECT * FROM DISASTER_VICTIM WHERE firstName = ? AND lastName = ?";
+    DisasterVictim victim = null;
+
+    try (Connection conn = connect();
+         PreparedStatement pstmt = conn.prepareStatement(querySQL)) {
+        pstmt.setString(1, firstName);
+        pstmt.setString(2, lastName);
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                // Extract victim details from the result set
+                String phoneNumber = rs.getString("phoneNumber");
+
+                // Create a new DisasterVictim object
+                victim = new DisasterVictim(firstName, lastName, phoneNumber);
+            }
+        }
+    }
+    return victim;
+}
 }

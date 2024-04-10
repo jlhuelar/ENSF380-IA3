@@ -17,7 +17,7 @@ public class DisasterVictimTest {
 
     @Before
     public void setUp() {
-        victim = new DisasterVictim("Johnny", validDate);
+        victim = new DisasterVictim("Johnny", validDate, "555-5555");
     }
 
     // Test constructor with valid entry date
@@ -30,7 +30,7 @@ public class DisasterVictimTest {
     // Test constructor with invalid entry date
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorInvalidDate() {
-        new DisasterVictim("Jane", "01-01-2021");
+        new DisasterVictim("Jane", "01-01-2021", "441-414");
     }
 
     // Test to get first name
@@ -42,7 +42,7 @@ public class DisasterVictimTest {
     // Test to get last name
     @Test
     public void testGetLastName() {
-        victim.setLastName("Doe"); // We must set it first since it is not set in the constructor
+        victim.setLastName("Doe"); 
         assertEquals("Doe", victim.getLastName());
     }
 
@@ -116,7 +116,7 @@ public class DisasterVictimTest {
         assertEquals(newGender, victim.getGender());
     }
 
-    // Test to set comments
+    /**  Test to set comments*/
     @Test
     public void testSetComments() {
         String newComments = "Allergic to penicillin";
@@ -124,27 +124,27 @@ public class DisasterVictimTest {
         assertEquals(newComments, victim.getComments());
     }
 
-    // Test to set and get valid age
+    /**  Test to set and get valid age*/
     @Test
     public void testAgeSetterGetter() {
         victim.setAge(30);
         assertEquals(30, victim.getAge());
     }
 
-    // Test to set and get invalid age
+    /**  Test to set and get invalid age*/
     @Test(expected = IllegalArgumentException.class)
     public void testAgeSetterWithNegative() {
         victim.setAge(-1);
     }
 
-    // Test to add dietary restrictions
+    /**  Test to add dietary restrictions */
     @Test
     public void testAddDietaryRestriction() {
         victim.addDietaryRestriction(DisasterVictim.DietaryRestrictions.GFML);
         assertTrue(Arrays.asList(victim.getDietaryRestrictions()).contains(DisasterVictim.DietaryRestrictions.GFML));
     }
 
-    // Test to remove dietary restrictions that exists in the enumurmation
+    /** Test to remove dietary restrictions that exists in the enumurmation */
     @Test
     public void testRemoveDietaryRestriction() {
         victim.addDietaryRestriction(DisasterVictim.DietaryRestrictions.KSML);
@@ -152,16 +152,16 @@ public class DisasterVictimTest {
         assertFalse(Arrays.asList(victim.getDietaryRestrictions()).contains(DisasterVictim.DietaryRestrictions.KSML));
     }
 
-    // Test to remove dietary restrictions that is not existing in the enumuration
+    /** Test to remove dietary restrictions that is not existing in the enumuration */ 
     @Test(expected = IllegalArgumentException.class)
     public void testRemoveNonExistingDietaryRestriction() {
         victim.removeDietaryRestriction(DisasterVictim.DietaryRestrictions.VJML);
     }
 
-    // Test that family relationships are consistent between two DisasterVictims
+    /** Test that family relationships are consistent between two DisasterVictims */
     @Test
     public void testConsistentFamilyRelationship() {
-        DisasterVictim sibling = new DisasterVictim("Sam", validDate);
+        DisasterVictim sibling = new DisasterVictim("Sam", validDate,"123-456");
         FamilyRelation familyRelation = new FamilyRelation(victim, "sibling", sibling);
         
         victim.addFamilyConnection(familyRelation);
@@ -177,7 +177,7 @@ public class DisasterVictimTest {
     // Test that altering a family relationship affects both DisasterVictims
     @Test
     public void testAlteringFamilyRelationship() {
-        DisasterVictim sibling = new DisasterVictim("Sam", validDate);
+        DisasterVictim sibling = new DisasterVictim("Sam", validDate, "232-3213");
         FamilyRelation familyRelation = new FamilyRelation(victim, "sibling", sibling);
         
         victim.addFamilyConnection(familyRelation);

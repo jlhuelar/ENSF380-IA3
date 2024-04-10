@@ -6,6 +6,11 @@ import edu.ucalgary.oop.DisasterVictimInterface;
 import edu.ucalgary.oop.InquirerInterface;
 import edu.ucalgary.oop.InquirerLogInterface;
 
+/**
+* @author Jericho Huelar
+*/
+
+
 public class MainMenu {
     private static Scanner scanner = new Scanner(System.in);
     private static DatabaseManager dbManager = new DatabaseManager(
@@ -22,7 +27,7 @@ public class MainMenu {
             System.out.println("4. Exit");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
 
             switch (choice) {
                 case 1:
