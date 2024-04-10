@@ -10,7 +10,7 @@ public class InquirerTest {
 
     @Before
     public void setUp() {
-        inquirer = new Inquirer("John", "Doe", "555-0102", "General Inquiry");
+        inquirer = new Inquirer("John", "Doe", "555-0102");
     }
 
     // Test for constructor
@@ -18,8 +18,7 @@ public class InquirerTest {
     public void testConstructor() {
         assertEquals("John", inquirer.getFirstName());
         assertEquals("Doe", inquirer.getLastName());
-        assertEquals("555-0102", inquirer.getServicesPhoneNum());
-        assertEquals("General Inquiry", inquirer.getInfo());
+        assertEquals("555-0102", inquirer.getPhoneNumber());
     }
 
     // Test to get first name
@@ -37,12 +36,7 @@ public class InquirerTest {
     // Test to get services phone number
     @Test
     public void testGetServicesPhoneNum() {
-        assertEquals("Getter for services phone number should return '555-0102'.", "555-0102", inquirer.getServicesPhoneNum());
+        assertEquals("Getter for services phone number should return '555-0102'.", "555-0102", inquirer.getPhoneNumber());
     }
 
-    // Test to get info
-    @Test
-    public void testGetInfo() {
-        assertEquals("Getter for info should return 'General Inquiry'.", "General Inquiry", inquirer.getInfo());
-    }
 }

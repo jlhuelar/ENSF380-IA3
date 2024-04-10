@@ -16,7 +16,7 @@ public class ReliefServiceTest {
     // Assume that Inquirer, DisasterVictim, and Location classes have appropriate constructors
     @Before
     public void setUp() {
-        inquirer = new Inquirer("Alex", "Brown", "555-0101", "AlexBrown@icloud.com");
+        inquirer = new Inquirer("Alex", "Brown", "555-0101");
         missingPerson = new DisasterVictim("John", "2024-03-12"); 
         lastKnownLocation = new Location("Saddledome","555 Saddledome Rise Se"); 
         reliefService = new ReliefService(inquirer, missingPerson, dateOfInquiry, infoProvided, lastKnownLocation);
@@ -55,7 +55,7 @@ public class ReliefServiceTest {
     // Test to set inquirer
     @Test
     public void testSetInquirer() {
-        Inquirer newInquirer = new Inquirer("Liam", "Doman", "555-0202", "LiamD@gmail.com");
+        Inquirer newInquirer = new Inquirer("Liam", "Doman", "555-0202");
         reliefService.setInquirer(newInquirer);
         assertEquals("Setter should update the inquirer.", newInquirer, reliefService.getInquirer());
     }
